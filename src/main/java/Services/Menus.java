@@ -1,6 +1,5 @@
 package Services;
 
-import GestionBDD.ConnectionBDD;
 import beans.Etudiants;
 
 import java.sql.Connection;
@@ -47,10 +46,11 @@ public class Menus {
                     new Case3(c);
                     break;
                 case 4:
-
+                    new Case4(c);
+                    break;
                 case 5:
-
+                    new Case5(c);
             }
-        }while(choix != 6);
+        } while (choix != 6);
     }
 }

@@ -9,13 +9,16 @@ public class Filieres {
     int numFiliere;
     String nomFiliere;
 
-    public Filieres(int numFiliere, String nomFiliere){
+    public Filieres(int numFiliere, String nomFiliere) {
         this.numFiliere = numFiliere;
         this.nomFiliere = nomFiliere;
     }
+
     public Filieres() {
     }
-Statement stmt =null;
+
+    Statement stmt = null;
+
     public void afficherFilieres(Connection c) throws SQLException {
         stmt = c.createStatement();
         ResultSet res = stmt.executeQuery("SELECT * FROM filieres ;");

@@ -13,7 +13,7 @@ public class ConnectionBDD {
         return c;
     }
 
-    Menus menus =new Menus();
+    Menus menus = new Menus();
 
     public void connectBDD() {
         try {

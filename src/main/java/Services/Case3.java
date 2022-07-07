@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class Case3 {
     Etudiants etudiants = new Etudiants();
     Scanner sc = new Scanner(System.in);
-    Statement stmt = null;
+    Statement stmt;
 
     public Case3(Connection c) throws SQLException {
         etudiants.affichertousEtudiants(c);
@@ -23,6 +23,6 @@ public class Case3 {
         System.out.println("Saisissez le nouveau nom/prénom:");
         String modif = sc.nextLine();
         stmt = c.createStatement();
-        stmt.executeUpdate("UPDATE etudiants SET " + (choixModif == 1 ? "nometud" : "prenometud") + " = '" + modif + "' WHERE numetud = "+choixNumEtud+" ;");
+        stmt.executeUpdate("UPDATE etudiants SET " + (choixModif == 1 ? "nometud" : "prenometud") + " = '" + modif + "' WHERE numetud = " + choixNumEtud + " ;");
     }
 }
