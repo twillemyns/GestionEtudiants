@@ -34,11 +34,11 @@ public class Menus {
             System.out.println("");
             System.out.println("=  Tapez 5 pour supprimer un étudiant                                =");
             System.out.println("======================================================================");
-            System.out.println("=                Tapez 6 pour quitter le programme");
+            System.out.println("                 Tapez 6 pour quitter le programme");
             choix = sc.nextInt();
             switch (choix) {
                 case 1:
-                    new Case1();
+                    new Case1(c);
                 case 2:
                     etudiants.affichertousEtudiants(c);
                 case 3:

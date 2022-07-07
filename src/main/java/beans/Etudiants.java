@@ -1,23 +1,17 @@
 package beans;
 
-import GestionBDD.ConnectionBDD;
-import GestionBDD.getTable;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 
 public class Etudiants {
     int numEtud;
     String nomEtud;
     String prenomEtud;
     int numFiliere;
-    ConnectionBDD connectionBDD = new ConnectionBDD();
-    getTable getTable = new getTable();
 
-    public Etudiants(int numEtud, String nomEtud, String prenomEtud, int numFiliere) throws SQLException {
+    public Etudiants(int numEtud, String nomEtud, String prenomEtud, int numFiliere) {
         this.numEtud = numEtud;
         this.nomEtud = nomEtud;
         this.prenomEtud = prenomEtud;
@@ -27,27 +21,33 @@ public class Etudiants {
     public Etudiants() throws SQLException {
     }
 
-    ArrayList<Etudiants> listEtudiants = getTable.Etudiants(connectionBDD) ;
+    public void afficherEtudiantsByFiliere(int choix, Connection c) throws SQLException {
+        stmt = c.createStatement();
+        ResultSet res = stmt.executeQuery("SELECT numetud , nometud , prenometud FROM etudiants e WHERE numfiliere = '"+choix+"' ;");
+        while (res.next()) {
+            int numEtud = res.getInt("numEtud");
+            String nometud = res.getString("nometud");
+            int prenometud = res.getInt("prenometud");
 
-    public void afficherEtudiantsByFiliere(int choix){
-        for (Etudiants e : listEtudiants){
-            if (e.numFiliere == choix){
-                System.out.println("N° Etudiant: "+e.nomEtud+", Nom: "+e.nomEtud+", Prénom: "+e.prenomEtud);
-            }
+            System.out.print("N° Etudiant: " + numEtud);
+            System.out.print(", " + nometud);
+            System.out.println(" " + prenometud );
         }
     }
     Statement stmt = null;
     public void affichertousEtudiants(Connection c) throws SQLException {
             stmt = c.createStatement();
-            ResultSet res = stmt.executeQuery("");
+            ResultSet res = stmt.executeQuery("SELECT numetud , nometud , prenometud , nomfiliere FROM etudiants e, filieres f WHERE e.numfiliere = f.numfiliere ;");
             while (res.next()) {
-                int noRoom = res.getInt("noroom");
-                String description = res.getString("description");
-                int prix = res.getInt("prix");
+                int numEtud = res.getInt("numEtud");
+                String nometud = res.getString("nometud");
+                String prenometud = res.getString("prenometud");
+                String nomFiliere = res.getString("nomfiliere");
 
-                System.out.print("N° Chambre: " + noRoom);
-                System.out.print(", " + description);
-                System.out.println(", Prix: " + prix + "€");
+                System.out.print("N° Etudiant: " + numEtud);
+                System.out.print(", " + nometud);
+                System.out.print(" " + prenometud );
+                System.out.println(", Filière: " + nomFiliere );
             }
     }
 }
