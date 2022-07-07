@@ -39,10 +39,13 @@ public class Menus {
             switch (choix) {
                 case 1:
                     new Case1(c);
+                    break;
                 case 2:
                     etudiants.affichertousEtudiants(c);
+                    break;
                 case 3:
-
+                    new Case3(c);
+                    break;
                 case 4:
 
                 case 5:

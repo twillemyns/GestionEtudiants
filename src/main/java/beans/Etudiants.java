@@ -23,11 +23,11 @@ public class Etudiants {
 
     public void afficherEtudiantsByFiliere(int choix, Connection c) throws SQLException {
         stmt = c.createStatement();
-        ResultSet res = stmt.executeQuery("SELECT numetud , nometud , prenometud FROM etudiants e WHERE numfiliere = '"+choix+"' ;");
+        ResultSet res = stmt.executeQuery("SELECT numetud , nometud , prenometud FROM etudiants e WHERE numfiliere = '"+choix+"' ORDER BY numetud;");
         while (res.next()) {
             int numEtud = res.getInt("numEtud");
             String nometud = res.getString("nometud");
-            int prenometud = res.getInt("prenometud");
+            String prenometud = res.getString("prenometud");
 
             System.out.print("N° Etudiant: " + numEtud);
             System.out.print(", " + nometud);
@@ -37,7 +37,7 @@ public class Etudiants {
     Statement stmt = null;
     public void affichertousEtudiants(Connection c) throws SQLException {
             stmt = c.createStatement();
-            ResultSet res = stmt.executeQuery("SELECT numetud , nometud , prenometud , nomfiliere FROM etudiants e, filieres f WHERE e.numfiliere = f.numfiliere ;");
+            ResultSet res = stmt.executeQuery("SELECT numetud , nometud , prenometud , nomfiliere FROM etudiants e, filieres f WHERE e.numfiliere = f.numfiliere ORDER BY numetud;");
             while (res.next()) {
                 int numEtud = res.getInt("numEtud");
                 String nometud = res.getString("nometud");

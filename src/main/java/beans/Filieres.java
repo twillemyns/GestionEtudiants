@@ -18,17 +18,13 @@ public class Filieres {
 Statement stmt =null;
     public void afficherFilieres(Connection c) throws SQLException {
         stmt = c.createStatement();
-        ResultSet res = stmt.executeQuery("SELECT numetud , nometud , prenometud , nomfiliere FROM etudiants e, filieres f WHERE e.numfiliere = f.numfiliere ;");
+        ResultSet res = stmt.executeQuery("SELECT * FROM filieres ;");
         while (res.next()) {
-            int numEtud = res.getInt("numEtud");
-            String nometud = res.getString("nometud");
-            int prenometud = res.getInt("prenometud");
-            int nomFiliere = res.getInt("nomfiliere");
+            int numFiliere = res.getInt("numfiliere");
+            String nomFiliere = res.getString("nomfiliere");
 
-            System.out.print("N° Etudiant: " + numEtud);
-            System.out.print(", " + nometud);
-            System.out.println(" " + prenometud );
-            System.out.println(", Filière: " + nomFiliere );
+            System.out.print("N° Filière: " + numFiliere);
+            System.out.println(", Filière: " + nomFiliere);
         }
     }
 }
